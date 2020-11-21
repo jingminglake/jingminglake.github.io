@@ -1,0 +1,104 @@
+---
+layout:     post
+title:      Github使用小结
+subtitle:   笔记
+date: 2017-09-21
+author:     Jingming
+status: public
+catalog: true
+tags:
+    - Github、Git
+---
+
+Git设计本质是对变化的一种保存记录，例如博客写文章，Git可以把我每次的草稿一直修改到最终形态的文章全部记录下来，而且知道
+每个版本之间的修改内容（差异）。
+
+这样带来的副作用好处就是可以方便多人代码开发协作，例如，每个人的代码贡献都可以记录下来，以及方便地对共同的一个主板本进行贡献。
+
+Git的做法是把每一次版本记录成快照，快照之间的差异可以快速的进行计算。https://www.zhihu.com/question/27680108
+
+Github是带远程仓库的Git。可以把远程分支同步到本地，在本地修改后，再同步回远程分支。
+
+
+1.git init // 创建一个空的Git库，即当前目录中产生一个.git的子目录。以后，所有的文件变化信息都会保存到这个目录下
+git add 文件名 // 添加要提交的文件 与git rm相对应
+参考：https://www.kernel.org/pub/software/scm/git/docs/git-add.html
+—A参数相当于加入当前文件夹下所有的变化，包括删除。
+
+git commit -a -m “有哪些变化” // -a表示只要是add过的文件（包括即使是unstage过的文件），那么一旦变化就会自动stage；-m与后面的“ ”部分配合用，m就是message
+git commit -am "xxx" //结合了git add和git commit
+add和commit理解：http://rogerdudler.github.io/git-guide/index.html
+工作区：顾名思义，就是当前开发时候的环境；
+Index和Stage是暂存区，表示git已经知道了这些变化，并将变化暂时保存在这里面；
+HEAD是最新的稳定版本，也就是说，可以理解为里程碑，有靠谱的时机才会把暂存区的内容commit到上面，形成最新稳定版。
+
+如何取消add（也就是unstage操作）：git status查看commit状态，然后使用git reset HEAD 要取消文件的文件名 即可取消该文件的add状态。
+
+2.git checkout filename
+忽略本地filename文件的变化直接从本地仓库下载原文件。使用时机：如果自己的本地文件不小心删除了，那么使用该命令可以强制下一个下来，或者放弃修改（例如整个文件修改砸了，不想提交，怕影响原来内容），就可以checkout该文件。
+git reset --hard可以取消所有的本地修改，相当于从HEAD版本下载文件来覆盖当前文件。
+checkout的理解：
+参考：http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html
+git pull相当于git fetch + git merge（指定一个分支merge到当前分支上）。
+
+3.git branch
+分支的概念就是某一个开发的副本，开发一般有一个主版本master，每个人自己当前开发的版本就是分支，需要的时候可以把自己的分支merge到主版本；在别人看到主版本更新后，可以把主版本merge到自己的分支。
+创建分支：git branch 新分支名
+创建以某分支为起始点(也就是复制一份)的分支： git checkout －b 新分支名 起始点的分支名
+切换到分支：git checkout 分支名
+冲突解决：在发生冲突时，输入git mergetool来启动merge工具， 如果没有工具，则安装一个，例如tortisemerge，diffmerge。
+
+4.git stash
+在分支之间切换时候（例如从分支A切换到分支B），如果之前忘记了commit，那么之前A分支的修改内容，在新的B分支下仍然能看到，这就会产生麻烦。git stash的使用情境就是：自己在某个分支上做了很多修改，但是自己目前并不想提交，
+但是又希望暂时切换到另一个分支上面去做修改。具体使用方法就是：先在之前的A分支上进行add，这样Index就知道该修改的存在，然后执行git stash，这时候git会把变化暂存到stash，之后切换到新分支B，这时候，之前A分支的修改内容不会显示在新分支B上，之后切换回A分支的时候，执行git stash apply来恢复到之前只做add的状态。
+
+5.git远程仓库
+一个.git结尾的URL就是一个远程（remote）仓库。
+git clone 一个远程的github的仓库后；
+使用git remote命令，可以查看到远程仓库名为origin。
+使用git remote －v命令，发现origin实际上是远程仓库URL默认的alias，也就是该URL的等价的缩写，或者说是装着该URL的变量。
+git fetch origin，git pull origin都可以从remote仓库取东西到本地仓库，区别是fetch不会默认去merge当前工作的分支，而pull会自动去merge当前工作的分支。
+关于git push：
+git push <远程主机名> <本地分支名>:<远程分支名>
+git push origin master // origin指定了你要push到哪个remote仓库,origin就是自己的（参考：https://www.zhihu.com/question/27712995）。只写一个master等价于“master:master” ，提交本地的master分支到remote的master分支
+$ git push origin test:master         // 提交本地test分支作为远程的master分支
+$ git push origin test:test              // 提交本地test分支作为远程的test分支
+如果想删除远程的分支呢？类似于上面，如果:左边的分支为空，那么将删除:右边的远程的分支。
+$ git push origin :test              // 刚提交到远程的test将被删除，但是本地还会保存的，不用担心。
+直接git push：默认orign，默认所有分支全部提交
+新增remote仓库：git remote add 仓库名 仓库URL
+6.git rebase
+git的版本控制原理是保存所有的版本，然后用指针来标记，指向这些版本的信息，哪个是HEAD，哪些是master分支，哪些是其它分支。一旦新的提交过来，那么将当前的版本指向前一个版本。
+在一个人建立分支开发时候，是很简单的，因为开发的一个分支是基于master的分支，所以merge之后，直接移动标记指针就可以了，如下图：
+![](~/屏幕截图 2017-10-06 11.54.43.png)
+但是，如果是多个人共同开发，假设有两个分支都做了修改，那么merge时候，会出现这种情况：一个人的修改提交到了master，master被改变了
+使用下面的merge：
+![](~/屏幕截图 2017-10-06 11.59.19.png)
+注意其中的C6的前一个版本为C5，而不是C5基于最新的master。
+如果使用rebase，那么C5，C4 merge之前，C3先要变基从C2到C4。
+![](~/屏幕截图 2017-10-06 12.02.45.png)
+rebase的作用是消除掉之前的分支，看起来比较清爽，原理是修改提交记录。所以要慎用，有的重要的分支就不能rebase。
+使用方法：git rebase 自己的分支 主分支，可以把自己分支rebase到主分支中去，然后解决冲突，解决后意味着自己分支与主分支没有不兼容了，可以push到远程github仓库中去发PR了。
+也可以从主分支操作，发送PR到自己的分支，拿到PR并解决冲突后，自己当前分支与主分支也兼容了，可以发自己的PR了。
+参考：https://www.youtube.com/watch?v=cSf8cO0WB4o
+7.git回退或前进提交版本
+git reflog 查看所有提交的版本号
+git reset --hard 版本号
+
+8. 实际问题
+（1）开发者提交了一个新的版本去测试，然后开发者继续开发，代码改了不少，此时之前的版本里面有bug，但是目前正在开发的代码不是成熟的可以提交的代码。此时需要及时修复之前版本的bug，提交该修复的版本给测试人员，该怎么办。
+github flow的情况下：可以在自己的github上面创建修复bug的分支，分支从之前测试的公司master分支pull过来。修改之后，pull request到该分支。
+分支管理策略：https://www.ibm.com/developerworks/cn/java/j-lo-git-mange/index.html
+http://www.ruanyifeng.com/blog/2012/07/git.html
+（2）解决冲突
+git checkout -b <b1> <b2> ； 意思是从本地的b2分支复制一个分支，命名为b1，并切换到b1
+git pull  <要merge过来的远程仓库地址> <远程仓库中的要merge过来的分支名> ； 意思是把远程分支pull到本地分支上进行merge
+之后，在b1分支上解决冲突：打开冲突的文件进行修改，修改完后要add和commit到本地。
+之后：
+git checkout  b2 ; 切换到b2分支
+git merge --no-ff b1; 将解决冲突后的b1分支merge到原来的b2分支上
+git push origin b2； 将当前分支（b2分支）提交到远程仓库的b2分支。
+（3）提交了一份代码到github，并给队友发了PR，然后自己继续开发了，此时队友要求修改PR，怎么办？
+在未提交到本地的情况下，可以直接新建分支，切换到该分支，然后把新变化提交到该分支上，之后切回原来分支，修改。
+（4）切换到其他分支进行开发，当前分支已经修改了
+https://blog.csdn.net/anhenzhufeng/article/details/78052418
