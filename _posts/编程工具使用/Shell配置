@@ -3,11 +3,11 @@ layout:     post
 title:      Shell配置
 subtitle: 笔记
 date: 2020-11-18
-author:     Jingming
+author: Jingming
 status: public
 catalog: true
 tags:
-    - Shell、命令、终端
+    - Shell
 ---
 
 为什么使用键盘操作计算机比使用鼠标要显得高大上？
@@ -32,38 +32,58 @@ iTerm2与mac自带的terminal相比：
 （2）iTerm2自带配置好的tmux。
 
 ### 二、Tmux
-tmux是终端选择器multiplexer，可以让我们快速的在一个terminal里面切换程序，并做detach操作（程序可以后台运行）、reattach操作。
+tmux是终端选择器multiplexer，可以让我们快速的在一个terminal里面切换程序，并做detach操作（程序仍然可以后台运行）、reattach操作。
 
-1. 基本概念
+####  1. 基本概念
 （1）一个Session对应一个需要做的任务，例如执行一个命令，但是传统方式的session和窗口是绑定的，窗口UI关闭，session会停止，而tmux可以解绑。
+
 （2）perfix是使用tmux命令的组合键的前缀，perfix默认为Ctrl+b。
+
 （3）一个Session里面可以有多个窗口Window，一个Window里面可以有多个Panel。Panel的理解就是window的基础上
 更小的划分。
 
 
 
-
-2. 在config中进行修改：
+#### 2. 在config中进行修改：
   （1）使用ctrl-a 替换 ctrl-b以免和vim冲突
+
 unbind C-b
+
 set -g prefix ^A
+
    (2)设置分屏
+
    bind v split-window -v -c "#{pane_current_path}"; 意思是将s键的功能替换成split-window -v -c "#{pane_current_path}"，也就是竖直分屏将其并命名为当前路径。                     │
+
    bind h split-window -h -c "#{pane_current_path}"
 
    (3)session管理
+
    bind C new-session                                                     │
+
    bind L choose-session
 
-3. 修改后的tmux的快捷键：
+#### 3. 修改后的tmux的快捷键：
 ctrl-a c 创建session，之前session被attach
+
+ctrl-a n 回到之前session
+
 ctrl-a l 关闭session
+
 ctrl-a v 竖直分屏 （按法：-表示同时按，ctrl和a一起按等一会，然后按v）
+
 ctrl-a h 水平分屏
+
 ctrl-a shift-N 创建标签并命名；或者使用ctrl-a c 创建新标签 +
+
 ctrl-a x 删除标签
+
 ctrl-a 1 切换到标签1
 
 ctrl-a d 进行detach
+
 tmux ls 查看session
+
 tmux attach -t 0 进行reattach
+
+tmux kill-session -t 0 删除0号会话
