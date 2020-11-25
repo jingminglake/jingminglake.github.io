@@ -49,7 +49,9 @@ tmux是终端选择器multiplexer，可以让我们快速的在一个terminal里
 
 unbind C-b
 
-set -g prefix ^A
+set -g prefix C-a
+
+bind C-a send-prefix
 
    (2)设置分屏
 
@@ -63,6 +65,10 @@ set -g prefix ^A
 
    bind L choose-session
 
+   (4) 配置生效快捷键
+   ubind r
+   bind r source-file ~/.tmux.conf
+
 #### 3. 修改后的tmux的快捷键：
 ctrl-a c 创建session，之前session被attach
 
@@ -70,9 +76,9 @@ ctrl-a n 回到之前session
 
 ctrl-a l 关闭session
 
-ctrl-a v 竖直分屏 （按法：-表示同时按，ctrl和a一起按等一会，然后按v）
+ctrl-a v or " 竖直分屏 （按法：-表示同时按，ctrl和a一起按等一会，然后按v）
 
-ctrl-a h 水平分屏
+ctrl-a h or% 水平分屏
 
 ctrl-a shift-N 创建标签并命名；或者使用ctrl-a c 创建新标签 +
 

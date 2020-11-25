@@ -1,0 +1,105 @@
+---
+layout:     post
+title:      从操作系统内核到产品部署（三）
+subtitle:   从操作系统内核到产品部署理解
+date: 2020-11-24
+author:     Jingming
+status: public
+catalog: true
+tags:
+    - 分布式、容器
+---
+
+上一篇介绍了Web服务器。Web程序部署，Docker image里面打包了这些服务器。
+
+### 一、Kubernetes
+
+Kubernetes是管理Docker容器的软件，它可以为容器提供部署运行、资源调度、服务发现、动态伸缩等功能。
+
+#### Pod
+Pod首先本身自带了一个容器，以提供网络栈、文件系统等基础服务。在此基础上，Pod里面可以放多个容器（例如一个pod里面可以放Nginx容器和一个Ruby on Rails应用容器），  
+
+这些容器相当于在一台机器上，共享localhost和文件目录。当然，一个pod往往放在一个物理机器中，这样就能保证Pod里面的
+服务之间的访问不会有太大物理延迟。
+
+k8s的workers调度是以pod为单位的。
+
+kubectl get pods 查看pods信息
+
+#### Replication Controller（ReplicaSet）
+
+管理Pod数量，对于配置好的数量，集群中实际如果多了，那么会停止一些容器，反之，添加容器满足这个值。
+
+#### API server/ scheduler
+
+管理容器的API服务。
+
+#### ETCD数据库
+
+存储集群全局变量的分布式数据库，被API server访问。
+
+#### Secrets和ConfigMaps
+
+都存放在ETCD中，组成都是键值对，可以作为文件被mount到容器或者作为环境变量注入到容器中。
+
+区别：一个是敏感数据，一个是不敏感数据。
+
+查看secrets：
+
+kubectl get secrets 查看secret名字
+
+kubectl describe secret名字
+
+#### Deployment
+
+Deployment对应一个应用服务，Deployment可以管理若干个pods（pod的replica）的生命周期、
+
+可以对pods进行replica，而且可以无缝衔接的更新升级Pods服务。
+
+kubectl get deployments 查看Deployment
+
+Deployment是不管负载平衡的。
+
+Deployment的种类：（1）Job 干完一个活就结束的一直短存的任务；（2）CronJob 定时运行的程序；
+（3）DaemonSets 后台一直跑的程序；DaemonSets可以在每个worker里面配置一个Daemon pod，例如监视worker里面pods的健康程度（通过运行server来收集服务的metrics信息）；
+（4）StatefulSets 有状态的程序，意思是这类程序需要持久化的数据库，通常会集合挂载EBS来达到扩容效果，且此类程序一般都是像Daemon一样一直运行的。
+
+#### Service
+
+Service负责负载平衡。管理是根据pods的标签管理一组pods。
+
+Service可以定义内部网络或外部网络的IP地址以及DNS表，可以创建和管理AWS的ELB（灵活负载平衡）来管理集群的数据入口。
+
+#### Namespace
+
+将K8S资源进行分组，K8S资源也就是pods，deployments等。
+
+kubectl get namespaces 查看namespaces
+
+kubectl get pods --namespace infra 查看infra命名空间下pods信息
+
+kns infra 切换到infra命名空间
+
+分组的用处包括：权限管理，把不同用户分到不同命名空间下；对不同app使用不同命名空间，控制他们的防火墙设置、控制安全、控制约束（compliance）；
+
+#### Network Polices
+
+（1）可以构建允许列表
+
+（2）可以适用到一组pods或者namespace下
+
+（3）内部网络的允许列表（通过配置访问外部的IP、pod的来源和目标）
+
+好处是可以分出例如QA，SandBox环境。
+
+#### Kubernetes的配置文件
+
+YAML文件 负责配置Kubernetes的资源；
+
+kubectl apply -f app.yaml
+
+#### 与DataCenter的关系
+
+每个DataCenter有自己的K8S集群，这些之间是完全独立的。
+
+kctx 数据中心名字 选则数据中心
