@@ -98,3 +98,4 @@ set nu
 
 syntax on 语法高亮
 
+参考：https://github.com/skywind3000/awesome-cheatsheets/blob/master/editors/vim.txt

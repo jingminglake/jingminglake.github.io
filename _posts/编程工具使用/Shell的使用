@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Shell配置
+title:      Shell的理解及配置
 subtitle: 笔记
 date: 2020-11-18
 author: Jingming
@@ -10,18 +10,26 @@ tags:
     - Shell
 ---
 
-为什么使用键盘操作计算机比使用鼠标要显得高大上？
+为什么程序员需要使用界面简陋的Shell？或者说：为什么使用键盘操作计算机比使用鼠标要显得高大上？
 
 原因如下：
 
-计算机程序的本质就是提供命令给用户使用。这种交互中介，如果是图标，需要用户首先找到坐标，然后点击它以便让程序知道是什么命令。
+计算机程序的本质就是提供命令为用户服务。其中的交互设计包括两种：
 
-仔细思考下，发现有些坐标信息其实是"无意义"的（例如不是打游戏的话），因为图标可能出现在屏幕界面的几乎任何地方，用户去找坐标这一步其实是无用功。
+- 图形操作：用户首先找到图标，然后点击它运行；
+
+- 键盘操作：用户用键盘键入自己的命令。
+
+仔细思考下，用户点击图标的时候，其实是需要首先找到图标的坐标的，点击之后触发了类似键盘的操作，也就是说，
+
+图标坐标信息其实是"无意义"的（例如不是打游戏的话），因为图标可能出现在屏幕界面的几乎任何地方，用户去找坐标这一步其实是无用功。
 
 编程如果使用shell终端命令行来操作计算机，那么显然效率会大增。
 
 程序员有时会使用自己的快捷键来替换掉系统的快捷键，这样的好处是
-在不同程序中，可以使用相类似的操作，这样一旦熟练后，可以大大提高效率。这要求程序员对命令、概念有着更多的、更深刻的了解。
+在不同程序中，可以使用相类似的操作，这样一旦熟练后，可以大大提高效率。
+
+键盘操作计算机要求程序员对命令、计算机概念有着更多的、更深刻的了解。
 
 ### 一、Mac下的iTerm2
 
@@ -34,7 +42,7 @@ iTerm2与mac自带的terminal相比：
 ### 二、Tmux
 tmux是终端选择器multiplexer，可以让我们快速的在一个terminal里面切换程序，并做detach操作（程序仍然可以后台运行）、reattach操作。
 
-####  1. 基本概念
+####  基本概念
 （1）一个Session对应一个需要做的任务，例如执行一个命令，但是传统方式的session和窗口是绑定的，窗口UI关闭，session会停止，而tmux可以解绑。
 
 （2）perfix是使用tmux命令的组合键的前缀，perfix默认为Ctrl+b。
@@ -44,7 +52,8 @@ tmux是终端选择器multiplexer，可以让我们快速的在一个terminal里
 
 
 
-#### 2. 在config中进行修改：
+#### 在config中进行修改：
+
   （1）使用ctrl-a 替换 ctrl-b以免和vim冲突
 
 unbind C-b
@@ -69,7 +78,7 @@ bind C-a send-prefix
    ubind r
    bind r source-file ~/.tmux.conf
 
-#### 3. 修改后的tmux的快捷键：
+#### 修改后的tmux的快捷键：
 ctrl-a c 创建session，之前session被attach
 
 ctrl-a n 回到之前session
@@ -78,7 +87,7 @@ ctrl-a l 关闭session
 
 ctrl-a v or " 竖直分屏 （按法：-表示同时按，ctrl和a一起按等一会，然后按v）
 
-ctrl-a h or% 水平分屏
+ctrl-a h or % 水平分屏
 
 ctrl-a shift-N 创建标签并命名；或者使用ctrl-a c 创建新标签 +
 
@@ -93,3 +102,5 @@ tmux ls 查看session
 tmux attach -t 0 进行reattach
 
 tmux kill-session -t 0 删除0号会话
+
+参考：https://github.com/skywind3000/awesome-cheatsheets/blob/master/tools/tmux.txt
