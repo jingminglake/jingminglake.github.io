@@ -62,9 +62,14 @@ Rails是Ruby的搭建Web程序的MVC框架，M对应Active Record， V对应Acti
 
 流程是：点击http链接，routing功能将url和具体contoller中具体action进行映射（例如在route.rb中配置 get "/xx/yy" => "controller#action"，其中action是定义在该controller下的一个方法名）。
 
-action对应指定view（actionName.html.erb，也就是ruby引擎生成的html，类似于.JSP），action方法名默认和view文件名第一段对应。
+action对应指定view（actionName.html.erb，也就是ruby引擎生成的html，类似于.JSP，application.html.erb是所有html.erb的"父文件"，原理是application.html.erb使用yield关键字），action方法名默认和view文件名第一段对应。
+action的原理是找到对应的html.erb文件，然后替换到application.html.erb中。action会首先申请具体的model，然后将model中填值并交给html.erb用。
 
 Ruby on rails使用ORM，也就是说，可以快速生成DB建表语句的Ruby语言版，且Rails本身就自带父类，方便的继承并添加建表语句就好。
+
+DB管理表的语句放在migration里面，Model层里面放的是表对应的ORM对象定义。Rails 把模型的类名转换成复数，然后查找对应的数据表。
+
+参考：https://ruby-china.github.io/rails-guides/active_record_basics.html
 
 #### 常用命令
 - rake routes 查看所有路由信息
@@ -91,8 +96,9 @@ routes.rb 中加入: resource :events
 #### 特殊语法
 
 - filename.html.erb 其实是action.minetype.renderer
-- Render关键字的意思是Render一个页面，并作为response返回；所以说，action函数中默认都是render
-到 函数名.html.erb的
+- Render关键字的意思是Render一个页面，并作为response返回；action函数中如果不写Render，默认都是取出函数名.html.erb并进行Render
+- 文件名需要是下划线分割的格式
+- <%= %>与<%%>相比，不仅eval，而且会进行render
 
 ### Ruby程序部署到Docker
 
