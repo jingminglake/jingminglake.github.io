@@ -10,7 +10,7 @@ tags:
     - Shell
 ---
 
-VIM三种模式：命令模式、输入模式、底线命令模式。
+VIM三种模式：命令模式、输入模式、底线命令模式。还有一种可见模式，鼠标进行选中文本。
 
 ### 一、命令模式
 
@@ -30,6 +30,13 @@ M 到当前屏幕中间一行
 L 到当前屏幕最后一行
 
 /单词  到匹配的单词处，之后按 n 到下一个匹配的单词处
+
+ngg 或者 :n回车   到第n行
+
+w 到下个单词
+
+b 返回上一个单词
+
 
 #### 2. 复制、删除、粘贴
 
@@ -101,3 +108,21 @@ set nu
 syntax on 语法高亮
 
 参考：https://github.com/skywind3000/awesome-cheatsheets/blob/master/editors/vim.txt
+
+### 五、插件使用
+
+Vim可以自己下载插件，或者使用管理插件下载的插件来下载插件。
+
+下载插件的扩展功能：
+
+- 文件目录结构查看
+
+下载nerdtree
+
+- 函数定义跳转
+
+VIM外下载ctags（exuberant ctags），然后在项目根目录下输入ctages -R . 生成tags文件夹，
+最后，.~/.vimrc 中通过以下命令显式地指定tag文件路径：
+:set tags+=tags文件路径
+
+这样，在tags所在目录打开VIM，就可以使用ctrl + ] 跳转到代码定义，使用ctrl + o返回之前文件。
