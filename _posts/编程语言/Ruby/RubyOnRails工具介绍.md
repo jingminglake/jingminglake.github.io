@@ -60,7 +60,7 @@ Rake和C++的make类似，它有着自己的语法来说明项目结构（Rakefi
 
 Rails是Ruby的搭建Web程序的MVC框架，M对应Active Record， V对应Action view， C对应Action Controller。
 
-流程是：点击http链接，routing功能将url和具体contoller中具体action进行映射（例如在route.rb中配置 get "/xx/yy" => "controller#action"，其中action是定义在该controller下的一个方法名）。
+流程是：点击http链接，routing功能将url和具体controller中具体action进行映射（例如在route.rb中配置 get "/xx/yy" => "controller#action"，其中action是定义在该controller下的一个方法名）。
 
 action对应指定view（actionName.html.erb，也就是ruby引擎生成的html，类似于.JSP，application.html.erb是所有html.erb的"父文件"，原理是application.html.erb使用yield关键字），action方法名默认和view文件名第一段对应。
 action的原理是找到对应的html.erb文件，然后替换到application.html.erb中。action会首先申请具体的model，然后将model中填值并交给html.erb用。
@@ -96,7 +96,8 @@ routes.rb 中加入: resource :events
 #### 特殊语法
 
 - filename.html.erb 其实是action.minetype.renderer
-- Render关键字的意思是Render一个页面，并作为response返回；action函数中如果不写Render，默认都是取出函数名.html.erb并进行Render
+- Render关键字的意思是Render一个页面，并作为response返回；action函数中如果不写Render，默认都是取出函数名.html.erb并进行Render；使用redirect_to来跳转，这样好处是进入下一个页面，例如
+点击"提交"按钮之后，由于包含提交按钮的页面里面往往有一些全局的提示弹窗，因此我们并不希望当前页面被刷新。
 - 文件名需要是下划线分割的格式
 - <%= %>与<%%>相比，不仅eval，而且会进行render
 
