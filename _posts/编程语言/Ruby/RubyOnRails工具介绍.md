@@ -25,7 +25,7 @@ require 会在 Ruby 预设的 $LOAD_PATH 中去查找对应的文件。
 
 可以通过执行 ruby -e 'puts $LOAD_PATH' 来看看当前 Ruby 中的 $LOAD_PATH 都有什么内容。
 
-gem使用gemspec 来描述一个ruby文件包的元信息，gem把脚本打包成一个.gem文件，就相当于java打的.jar包。
+gem使用gemspec来描述一个ruby文件包的元信息，gem把脚本打包成一个.gem文件，就相当于java打的.jar包。
 
 执行gem install 文件名.gem，下载gem（也就是ruby文件包）到GEM_PATH中。
 
