@@ -110,3 +110,13 @@ routes.rb 中加入: resource :events
 原因：Dockerfile里面的命令都会创建中间镜像层，且都会缓存下来，只有在当前命令使得镜像变化的时候才会生成新的镜像层并缓存；
 
 如果Ruby项目的Gemfile不变，变的是源码，那么这个镜像构建过程会快很多。
+
+### DB migration
+数据库Version概念：某个时间点的数据库表结构。
+
+数据库Migration概念：Versions之间的表结构变化。
+
+要做migration，可以通过rake db:migrate + 方法来做。该方法所属类需要继承ActiveRecord::Migration，
+然后方法里面写入表操作语句。
+
+所有migration之后的最终结果放入db/schema.rb。
