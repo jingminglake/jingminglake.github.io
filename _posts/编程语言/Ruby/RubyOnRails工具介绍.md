@@ -17,7 +17,7 @@ tags:
 
 #### RubyGems
 
-RubyGems是下载Ruby包的工——具，例如帮我们下载Rails。
+RubyGems是下载Ruby包的工具，例如帮我们下载Rails。
 
 在Ruby中，如果想使用另外一个 Ruby 文件中的内容，需要使用 require 关键字来加载另外一个 Ruby 文件中的内容。
 
@@ -29,7 +29,7 @@ gem使用gemspec来描述一个ruby文件包的元信息，gem把脚本打包成
 
 执行gem install 文件名.gem，下载gem（也就是ruby文件包）到GEM_PATH中。
 
-安装了GEM的环境，require不仅会在$LOAD_PATH 中查找文件，还会在GEM_PATH中找文件。
+安装了GEM的环境，require不仅会在$LOAD_PATH中查找文件，还会在GEM_PATH中找文件。
 
 
 #### Bundler
@@ -58,16 +58,17 @@ Rake和C++的make类似，它有着自己的语法来说明项目结构（Rakefi
 
 ### Rails
 
-Rails是Ruby的搭建Web程序的MVC框架，M对应Active Record， V对应Action view， C对应Action Controller。
+Rails是Ruby的搭建Web程序的MVC框架，M对应Active Record， V对应Action View， C对应Action Controller。
 
 流程是：点击http链接，routing功能将url和具体controller中具体action进行映射（例如在route.rb中配置 get "/xx/yy" => "controller#action"，其中action是定义在该controller下的一个方法名）。
 
-action对应指定view（actionName.html.erb，也就是ruby引擎生成的html，类似于.JSP，application.html.erb是所有html.erb的"父文件"，原理是application.html.erb使用yield关键字），action方法名默认和view文件名第一段对应。
+action对应指定view（actionName.html.erb，也就是ruby引擎生成的html，类似于.JSP。application.html.erb是所有html.erb的"父文件"，原理是application.html.erb使用yield关键字），action方法名默认和view文件名第一段对应。
+
 action的原理是找到对应的html.erb文件，然后替换到application.html.erb中。action会首先申请具体的model，然后将model中填值并交给html.erb用。
 
 Ruby on rails使用ORM，也就是说，可以快速生成DB建表语句的Ruby语言版，且Rails本身就自带父类，方便的继承并添加建表语句就好。
 
-DB管理表的语句放在migration里面，Model层里面放的是表对应的ORM对象定义。Rails 把模型的类名转换成复数，然后查找对应的数据表。
+DB管理表的语句放在migration里面，Model层里面放的是表对应的ORM对象定义。Rails把模型的类名转换成复数，然后查找对应的数据表。
 
 参考：https://ruby-china.github.io/rails-guides/active_record_basics.html
 
@@ -112,6 +113,7 @@ routes.rb 中加入: resource :events
 如果Ruby项目的Gemfile不变，变的是源码，那么这个镜像构建过程会快很多。
 
 ### DB migration
+
 数据库Version概念：某个时间点的数据库表结构。
 
 数据库Migration概念：Versions之间的表结构变化。
