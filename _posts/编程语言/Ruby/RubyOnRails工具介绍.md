@@ -48,9 +48,11 @@ Gemfile指定的版本是模糊的，而不是具体版本，例如说大于某�
 
 bundle exec作用是让当前执行ruby程序使用Gemfile.lock中的GEM版本，而不是$LOAD_PATH中的版本。
 
+查找安装的gem的位置：bundle show <gemName>
+
 #### RVM
 
-RVM的作用是让我们可以同时在多个版本的Ruby环境下工作。这好比Java开发时候，必须先选择一种JDK版本进行开发。
+RVM的作用是让我们可以同时在多个版本的Ruby环境下工作。这好比Java开发时候，必须先选择一种JDK版本(JVM版本)进行开发。
 
 #### Rake
 
@@ -123,6 +125,16 @@ routes.rb 中加入: resource :events
 
 所有migration之后的最终结果放入db/schema.rb。
 
+操作举例：更新多个表
+
+rails generate migration addFieldsForXXFeature  # 会在migration目录下创建带时间戳命名的migration文件
+
+打开该migration文件，在其中加入更新各表格代码
+
+进入rails部署（实际）环境，例如进入docker内，执行rake db:migrate，将根据migration文件在schema.rb中更新字段
+
+删除migration：https://stackoverflow.com/questions/31843363/rails-how-to-delete-a-pending-migration/31843442
+
 ### Active Record
 
 #### 关联关系
@@ -141,3 +153,11 @@ routes.rb 中加入: resource :events
 | has_and_belongs_to_many | 不采用中间表的多对多 | 适合建立简单的多对多关系 ||
 
 belong_to和has_one结合使用就是一对一。
+
+delegate :name, :to => :user
+意思是：该表里面有name方法，但是实际上该方法是调用user的name方法。
+
+### 其他
+
+includes关键字：https://apidock.com/rails/ActiveRecord/QueryMethods/includes
+作用是减少访问DB次数。
