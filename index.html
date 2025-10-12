@@ -19,7 +19,11 @@ description: "The LORD is my shepherd; I shall not want."
         </div>
     </a>
     <p class="post-meta">
-        Posted by {% if post.author %}{{ post.author }}{% else %}{{ site.title }}{% endif %} on {{ post.date | date: "%B %-d, %Y" }}
+        Posted by {% if post.author %}{{ post.author }}{% else %}{{ site.title }}{% endif %}
+        on {{ post.date | date: "%B %-d, %Y" }}
+        {% if post.update_date %}
+        , Updated on {{ post.update_date | date: "%B %-d, %Y" }}
+        {% endif %}
     </p>
 </div>
 <hr>
