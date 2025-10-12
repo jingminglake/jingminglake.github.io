@@ -19,9 +19,9 @@
 # in the templates via {{ site.myvariable }}.
 
 # Site settings
-title: 景铭的博客
-SEOTitle: Jingming的博客 | Jingming Blog
-keyword: "jingming的博客, jingming, cili, micili, C++, leetcode, 音乐, 圣经"
+title: 亚雄的博客
+SEOTitle: Jingming(Yaxiong)的博客 | Yaxiong Blog
+keyword: "jingming的博客, jingming, cili, micili, C++, leetcode, 音乐, 圣经, Yaxiong"
 header-img: img/post-bg-desk.jpg
 email: jingminglake@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
