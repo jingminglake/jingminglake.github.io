@@ -41,12 +41,14 @@ sidebar-about-description: "Goals determine what you going to be!"
 sidebar-avatar: /img/about-me.png
 
 # Build settings
-#theme: minima
+#theme: jekyll-theme-Architect
+remote_theme: pages-themes/architect@v0.2.0
 #plugins:
 #  - jekyll-feed
 
 plugins:
   - jekyll-paginate
+  - jekyll-remote-theme
 permalink: pretty
 paginate: 10
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
