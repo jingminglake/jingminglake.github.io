@@ -37,7 +37,7 @@ github_username:  jingminglake
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "Goals determine what you going to be!"
+sidebar-about-description: "Unless a grain of wheat falls into the ground and dies, it remains alone; but if it dies, it produces much grain."
 sidebar-avatar: /img/about-me.png
 
 # Build settings
