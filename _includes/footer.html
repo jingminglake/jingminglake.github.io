@@ -274,8 +274,10 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         console.log('Initializing mermaid...');
+        
+        // 配置 mermaid
         mermaid.initialize({
-            startOnLoad: true,
+            startOnLoad: false,  // 手动控制
             theme: 'default',
             securityLevel: 'loose',
             flowchart: {
@@ -283,7 +285,34 @@
                 htmlLabels: true
             }
         });
-        console.log('Mermaid initialized');
+        
+        // 查找并转换 mermaid 代码块
+        const mermaidBlocks = document.querySelectorAll('pre code.language-mermaid, code.language-mermaid');
+        console.log('Found mermaid blocks:', mermaidBlocks.length);
+        
+        mermaidBlocks.forEach(function(block, index) {
+            const mermaidCode = block.textContent || block.innerText;
+            const mermaidDiv = document.createElement('div');
+            mermaidDiv.className = 'mermaid';
+            mermaidDiv.textContent = mermaidCode;
+            
+            // 替换原来的代码块
+            if (block.parentElement && block.parentElement.tagName === 'PRE') {
+                block.parentElement.parentNode.replaceChild(mermaidDiv, block.parentElement);
+            } else {
+                block.parentNode.replaceChild(mermaidDiv, block);
+            }
+            
+            console.log('Converted mermaid block', index, ':', mermaidCode.substring(0, 50));
+        });
+        
+        // 手动渲染所有 mermaid 图表
+        if (mermaidBlocks.length > 0) {
+            mermaid.init();
+            console.log('Mermaid rendering complete');
+        }
+        
+        console.log('Mermaid setup complete');
     });
 </script>
 {% endif %}
