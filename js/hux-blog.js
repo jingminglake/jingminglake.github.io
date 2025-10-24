@@ -49,36 +49,42 @@ jQuery(document).ready(function($) {
     if ($(window).width() > MQL) {
         var headerHeight = $('.navbar-custom').height(),
             bannerHeight  = $('.intro-header .container').height();     
+        // 添加节流优化
+        var scrollTimer;
         $(window).on('scroll', {
                 previousTop: 0
             },
             function() {
-                var currentTop = $(window).scrollTop(),
-                    $catalog = $('.side-catalog');
+                if (scrollTimer) {
+                    clearTimeout(scrollTimer);
+                }
+                scrollTimer = setTimeout(() => {
+                    var currentTop = $(window).scrollTop(),
+                        $catalog = $('.side-catalog');
 
-                //check if user is scrolling up by mouse or keyborad
-                if (currentTop < this.previousTop) {
+                    //check if user is scrolling up by mouse or keyborad
+                    if (currentTop < this.previousTop) {
                     //if scrolling up...
                     if (currentTop > 0 && $('.navbar-custom').hasClass('is-fixed')) {
                         $('.navbar-custom').addClass('is-visible');
                     } else {
                         $('.navbar-custom').removeClass('is-visible is-fixed');
                     }
-                } else {
-                    //if scrolling down...
-                    $('.navbar-custom').removeClass('is-visible');
-                    if (currentTop > headerHeight && !$('.navbar-custom').hasClass('is-fixed')) $('.navbar-custom').addClass('is-fixed');
-                }
-                this.previousTop = currentTop;
+                    } else {
+                        //if scrolling down...
+                        $('.navbar-custom').removeClass('is-visible');
+                        if (currentTop > headerHeight && !$('.navbar-custom').hasClass('is-fixed')) $('.navbar-custom').addClass('is-fixed');
+                    }
 
-
-                //adjust the appearance of side-catalog
-                $catalog.show()
-                if (currentTop > (bannerHeight + 41)) {
-                    $catalog.addClass('fixed')
-                } else {
-                    $catalog.removeClass('fixed')
-                }
+                    //adjust the appearance of side-catalog
+                    $catalog.show()
+                    if (currentTop > (bannerHeight + 41)) {
+                        $catalog.addClass('fixed')
+                    } else {
+                        $catalog.removeClass('fixed')
+                    }
+                    this.previousTop = currentTop;
+                }, 16); // 60fps节流
             });
     }
 });

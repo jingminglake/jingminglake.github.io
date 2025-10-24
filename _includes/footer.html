@@ -283,7 +283,10 @@
             flowchart: {
                 useMaxWidth: true,
                 htmlLabels: true
-            }
+            },
+            // 性能优化配置
+            maxTextSize: 50000,
+            maxEdges: 500
         });
         
         // 查找并转换 mermaid 代码块
