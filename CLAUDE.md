@@ -82,6 +82,40 @@ tags:
 - **后端** / **系统设计** / **设计模式**: 技术文章
 - **心路历程** / **道路真理生命** / **音乐**: 个人与信仰
 
+## TODO Tasks
+
+### P0 - 立即执行（低风险，半天内）
+
+- [x] Google Analytics UA → GA4 迁移（Measurement ID: G-GKLEVYMG3C）
+- [ ] 删除 IE8 兼容代码（html5shiv + respond.js）
+  - 文件: `_includes/head.html` 49-50行
+- [ ] 删除 FastClick（现代浏览器已不需要）
+  - 文件: `_includes/footer.html` 179行
+
+### P1 - 近期执行（中等工作量，1-2天）
+
+- [ ] Disqus → Giscus 迁移（基于 GitHub Discussions，无广告，加载快）
+  - 文件: `_layouts/post.html`, `about.html`
+- [ ] Font Awesome 4.6.3 → 6.x 升级
+  - 文件: `_includes/head.html` CDN 链接 + 模板中图标类名
+
+### P2 - 计划执行（工作量较大，需仔细测试）
+
+- [ ] Bootstrap 3.x → 5.x 升级
+  - 影响: 5个布局文件，46+ class 需改名（col-xs-* → col-*、navbar-default 等）
+  - 文件: `_layouts/`, `_includes/nav.html`, `_includes/footer.html`
+- [ ] 去掉 jQuery，改用原生 JS
+  - 影响: 3个自定义 JS 文件需重写
+  - 文件: `js/hux-blog.js`, `js/jquery.nav.js`, `js/jquery.tagcloud.js`
+- [ ] LESS → 现代 CSS 方案迁移
+  - 文件: `less/` 目录，共 1,226 行
+
+### 已完成
+
+- [x] 生成 CLAUDE.md
+- [x] 生成文章模板 `_templates/post-template.md`
+- [x] 发布文章：优秀软件工程师日常开发流程SOP
+
 ## 常用命令
 
 ```bash
