@@ -27,7 +27,7 @@ email: jingminglake@gmail.com
 description: "亚雄的技术与信仰博客，分享软件工程师工作SOP、后端开发、系统设计、Leetcode题解、圣经研读等内容。"
 
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://jingminglake.github.io" # the base hostname & protocol for your site, e.g. https://example.com
+url: "https://www.micili.cn" # the base hostname & protocol for your site
 #twitter_username: jekyllrb
 github_username:  jingminglake
 
