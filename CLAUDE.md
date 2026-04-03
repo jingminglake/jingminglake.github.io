@@ -84,9 +84,11 @@ tags:
 
 ## TODO Tasks
 
-### P0 - 立即执行（低风险，半天内）
+### P0 - 立即执行
 
 - [x] Google Analytics UA → GA4 迁移（Measurement ID: G-GKLEVYMG3C）
+- [ ] SEO 优化（详见 `tasks/P0-seo-optimization.md`）
+  - 无 sitemap.xml、无 robots.txt、description 未修改、无 OG 标签、jekyll-feed 未激活
 - [ ] 删除 IE8 兼容代码（html5shiv + respond.js）
   - 文件: `_includes/head.html` 49-50行
 - [ ] 删除 FastClick（现代浏览器已不需要）

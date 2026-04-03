@@ -21,13 +21,10 @@
 # Site settings
 title: 亚雄的博客
 SEOTitle: Jingming(Yaxiong)的博客 | Yaxiong Blog
-keyword: "jingming的博客, jingming, cili, micili, C++, leetcode, 音乐, 圣经, Yaxiong"
+keyword: "软件工程师, 后端开发, 系统设计, Leetcode, 圣经研读, SOP, Web开发, Ruby on Rails, 工作方法论"
 header-img: img/post-bg-desk.jpg
 email: jingminglake@gmail.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+description: "亚雄的技术与信仰博客，分享软件工程师工作SOP、后端开发、系统设计、Leetcode题解、圣经研读等内容。"
 
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://jingminglake.github.io" # the base hostname & protocol for your site, e.g. https://example.com
@@ -47,6 +44,8 @@ sidebar-avatar: /img/about-me.png
 
 plugins:
   - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-feed
 permalink: pretty
 paginate: 10
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]

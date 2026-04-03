@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jingminglake.github.io/sitemap.xml
