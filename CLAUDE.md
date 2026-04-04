@@ -87,21 +87,26 @@ tags:
 ### P0 - 立即执行
 
 - [x] Google Analytics UA → GA4 迁移（Measurement ID: G-GKLEVYMG3C）
-- [ ] SEO 优化（详见 `tasks/P0-seo-optimization.md`）
-  - 无 sitemap.xml、无 robots.txt、description 未修改、无 OG 标签、jekyll-feed 未激活
+- [x] SEO 优化（sitemap、robots.txt、OG标签、description、feed、Search Console 已提交）
 - [ ] 删除 IE8 兼容代码（html5shiv + respond.js）
   - 文件: `_includes/head.html` 49-50行
 - [ ] 删除 FastClick（现代浏览器已不需要）
   - 文件: `_includes/footer.html` 179行
 
-### P1 - 近期执行（中等工作量，1-2天）
+### P1 - 近期执行
 
+- [ ] 建立文章关联关系（详见 `tasks/P1-post-cross-references.md`）
+  - 系列文章上一篇/下一篇导航、相关文章互相引用、索引页、修复17个缺日期文件名
 - [ ] Disqus → Giscus 迁移（基于 GitHub Discussions，无广告，加载快）
   - 文件: `_layouts/post.html`, `about.html`
 - [ ] Font Awesome 4.6.3 → 6.x 升级
   - 文件: `_includes/head.html` CDN 链接 + 模板中图标类名
 
-### P2 - 计划执行（工作量较大，需仔细测试）
+### P2 - 计划执行
+
+- [ ] 添加版权保护声明 CC BY-NC-SA 4.0（详见 `tasks/P2-copyright-notice.md`）
+
+### P3 - 技术升级（工作量较大，需仔细测试）
 
 - [ ] Bootstrap 3.x → 5.x 升级
   - 影响: 5个布局文件，46+ class 需改名（col-xs-* → col-*、navbar-default 等）
