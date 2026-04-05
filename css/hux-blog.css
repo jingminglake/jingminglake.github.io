@@ -189,6 +189,7 @@ blockquote {
   white-space: pre-wrap;
   word-wrap: break-word;
   overflow: visible;
+  touch-action: pan-y;
   background-color: #f5f5f5;
   border: 1px solid #e0e0e0;
   border-radius: 4px;
