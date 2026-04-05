@@ -64,8 +64,8 @@ kramdown:
 
 
 # 评论系统
-# Disqus（https://disqus.com/）
-disqus_username: jingming
+# Giscus（基于 GitHub Discussions）
+# 配置见 https://giscus.app
 
 # Google Analytics
 ga_track_id: 'G-GKLEVYMG3C'              # Format: G-XXXXXXXXXX (GA4)
