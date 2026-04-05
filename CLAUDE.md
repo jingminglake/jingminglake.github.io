@@ -102,7 +102,7 @@ tags:
 
 ### P2 - 计划执行
 
-- [ ] 添加版权保护声明 CC BY-NC-SA 4.0（详见 `tasks/P2-copyright-notice.md`）
+- [x] 添加版权保护声明 CC BY-NC-SA 4.0（详见 `tasks/P2-copyright-notice.md`）
 
 ### P3 - 技术升级（工作量较大，需仔细测试）
 
