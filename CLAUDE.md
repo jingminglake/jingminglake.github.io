@@ -88,10 +88,8 @@ tags:
 
 - [x] Google Analytics UA → GA4 迁移（Measurement ID: G-GKLEVYMG3C）
 - [x] SEO 优化（sitemap、robots.txt、OG标签、description、feed、Search Console 已提交）
-- [ ] 删除 IE8 兼容代码（html5shiv + respond.js）
-  - 文件: `_includes/head.html` 49-50行
-- [ ] 删除 FastClick（现代浏览器已不需要）
-  - 文件: `_includes/footer.html` 179行
+- [x] 删除 IE8 兼容代码（html5shiv + respond.js）
+- [x] 删除 FastClick（现代浏览器已不需要）
 
 ### P1 - 近期执行
 

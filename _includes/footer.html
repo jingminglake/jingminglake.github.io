@@ -174,15 +174,6 @@
     }
 </script>
 
-<!--fastClick.js -->
-<script>
-    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
-        var $nav = document.querySelector("nav");
-        if($nav) FastClick.attach($nav);
-    })
-</script>
-
-
 <!-- Google Analytics (GA4) -->
 {% if site.ga_track_id %}
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.ga_track_id }}"></script>
