@@ -93,8 +93,8 @@ tags:
 
 ### P1 - 近期执行
 
-- [ ] 建立文章关联关系（详见 `tasks/P1-post-cross-references.md`）
-  - 系列文章上一篇/下一篇导航、相关文章互相引用、索引页、修复17个缺日期文件名
+- [x] 建立文章关联关系（详见 `tasks/P1-post-cross-references.md`）
+  - 系列文章上一篇/下一篇导航已完成，缺日期文件已移至 _drafts/，互相引用和索引页暂不做（tags页已覆盖）
 - [x] Disqus → Giscus 迁移（基于 GitHub Discussions，无广告，加载快）
   - 文件: `_layouts/post.html`, `_layouts/keynote.html`, `about.html`, `_config.yml`
 - [x] Font Awesome 4.6.3 → 6.5.1 升级
