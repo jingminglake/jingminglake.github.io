@@ -63,20 +63,52 @@ layout: default
 
                 <hr style="visibility: hidden;">
 
+                <!-- 同系列文章导航 -->
+                <!-- 优先用第二个标签（书卷名/系列名），没有则用第一个标签 -->
+                {% if page.tags.size > 1 %}
+                    {% assign series_tag = page.tags[1] %}
+                {% else %}
+                    {% assign series_tag = page.tags | first %}
+                {% endif %}
+                {% if series_tag %}
+                    {% assign series_posts = "" | split: "" %}
+                    {% for post in site.posts %}
+                        {% if post.tags contains series_tag %}
+                            {% assign series_posts = series_posts | push: post %}
+                        {% endif %}
+                    {% endfor %}
+                    {% assign series_posts = series_posts | sort: "date" %}
+
+                    {% assign prev_post = nil %}
+                    {% assign next_post = nil %}
+                    {% for post in series_posts %}
+                        {% if post.url == page.url %}
+                            {% if forloop.index0 > 0 %}
+                                {% assign prev_index = forloop.index0 | minus: 1 %}
+                                {% assign prev_post = series_posts[prev_index] %}
+                            {% endif %}
+                            {% assign next_index = forloop.index0 | plus: 1 %}
+                            {% if next_index < series_posts.size %}
+                                {% assign next_post = series_posts[next_index] %}
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+
                 <ul class="pager">
-                    {% if page.previous.url %}
+                    {% if prev_post %}
                     <li class="previous">
-                        <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title}}">
-                        Previous<br>
-                        <span>{{page.previous.title}}</span>
+                        <a href="{{ prev_post.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{ prev_post.title }}">
+                        上一篇<br>
+                        <span>{{ prev_post.title }}</span>
                         </a>
                     </li>
                     {% endif %}
-                    {% if page.next.url %}
+                    {% if next_post %}
                     <li class="next">
-                        <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}">
-                        Next<br>
-                        <span>{{page.next.title}}</span>
+                        <a href="{{ next_post.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{ next_post.title }}">
+                        下一篇<br>
+                        <span>{{ next_post.title }}</span>
                         </a>
                     </li>
                     {% endif %}
