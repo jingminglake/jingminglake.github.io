@@ -11,9 +11,12 @@
 - **Markdown 处理**: kramdown (GFM)
 - **代码高亮**: rouge
 - **CSS 框架**: Bootstrap 3.x + 自定义 Hux Blog 主题 (LESS 源码在 `/less/`)
-- **插件**: jekyll-paginate
-- **评论系统**: Disqus (用户名: jingming)
-- **分析**: Google Analytics (UA-150811080-1)
+- **图标库**: Font Awesome 6.5.1 (CDN)
+- **图表**: Mermaid 11.12.0 (按需加载，front matter 设 `mermaid: true`)
+- **插件**: jekyll-paginate, jekyll-sitemap, jekyll-feed
+- **评论系统**: Giscus (基于 GitHub Discussions，repo: jingminglake/jingminglake.github.io)
+- **分析**: Google Analytics GA4 (G-GKLEVYMG3C)
+- **版权声明**: CC BY-NC-SA 4.0
 - **托管**: GitHub Pages，自定义域名 www.micili.cn (CNAME)
 
 ## 目录结构
@@ -22,7 +25,10 @@
 _config.yml          # Jekyll 主配置
 _layouts/            # 页面模板 (default, post, page, keynote)
 _includes/           # 可复用组件 (head, nav, footer)
-_posts/              # 博客文章 (~171 篇)
+_posts/              # 已发布文章 (~154 篇，按分类子目录组织)
+_drafts/             # 草稿文章 (~10 篇，不会被发布)
+_templates/          # 文章模板
+tasks/               # 任务文档
 css/                 # 编译后的样式
 less/                # LESS 样式源码
 js/                  # JavaScript 文件
@@ -32,6 +38,9 @@ about.html           # 关于页面
 index.html           # 首页 (分页)
 tags.html            # 标签归档页
 404.html             # 错误页面
+feed.xml             # RSS 订阅源
+sitemap.xml          # 站点地图 (自动生成)
+robots.txt           # 搜索引擎爬虫规则
 ```
 
 ## 文章规范
@@ -76,11 +85,13 @@ tags:
 ### 内容分类
 
 主要分类包括:
-- **读圣经** (最大分类): 马可福音、约翰福音、创世纪、腓立比书、提摩太后书、雅歌等
-- **Leetcode**: 算法题解
+- **读圣经** (最大分类): 创世纪(50章)、马可福音(16章)、雅歌(8章)、约翰福音(4章)、腓立比书(4章)、提摩太后书(4章)
+- **信仰相关**: 道路真理生命、信仰、关于服侍、读属灵书报
+- **Leetcode**: 算法题解 (20篇)
 - **编程语言**: Java、JavaScript、Ruby
-- **后端** / **系统设计** / **设计模式**: 技术文章
-- **心路历程** / **道路真理生命** / **音乐**: 个人与信仰
+- **技术**: 后端、系统设计、设计模式、前端、数据结构和算法、编程工具使用
+- **工作**: 工作SOP、方法论
+- **个人**: 心路历程、音乐、健身、学习、科普、英语
 
 ## TODO Tasks
 
@@ -120,6 +131,11 @@ tags:
 - [x] 生成 CLAUDE.md
 - [x] 生成文章模板 `_templates/post-template.md`
 - [x] 发布文章：优秀软件工程师日常开发流程SOP
+- [x] 修复移动端滚动卡顿（overflow/touch-action/throttle/FastClick残留）
+- [x] 正文和代码块字体改为 18px
+- [x] 修复 SOP 文章 kramdown 有序列表渲染问题
+- [x] 圣经系列文章同日排序修复（42篇重新分配日期）
+- [x] 17个缺日期草稿文件移至 _drafts/
 
 ## 常用命令
 
