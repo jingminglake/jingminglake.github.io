@@ -19,16 +19,20 @@
 ## 当前技术栈
 
 - Jekyll ~4.0.0 / GitHub Pages
-- Bootstrap 3.x（待升级到 5.x）
-- jQuery（待移除）
-- LESS（待迁移）
+- Bootstrap 3.x（P3 待升级到 5.x）
+- jQuery（P3 待移除）
+- LESS（P3 待迁移）
+- Font Awesome 6.5.1 (CDN)
+- Mermaid 11.12.0（按需加载）
+- 插件: jekyll-paginate, jekyll-sitemap, jekyll-feed
 - GA4: G-GKLEVYMG3C
 - 域名: www.micili.cn
-- 评论: Disqus（待迁移到 Giscus）
+- 评论: Giscus（基于 GitHub Discussions）
+- 版权: CC BY-NC-SA 4.0
 
 ## 待办任务
 
-参见 `/tasks/` 目录和 `CLAUDE.md` 中的 TODO Tasks 章节。
+参见 `CLAUDE.md` 中的 TODO Tasks 章节。P0/P1/P2 已全部完成，仅剩 P3 技术升级（优先级低）。
 
 ## 关键文件
 

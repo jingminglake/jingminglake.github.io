@@ -5,6 +5,16 @@
 这是一个基于 Jekyll 的个人博客，托管在 GitHub Pages 上，自定义域名为 www.micili.cn。
 博客内容以中文为主，涵盖圣经研读、编程技术、个人成长等主题。
 
+## 角色分工
+
+Claude 作为博客管理者承担三个角色，各角色的详细上下文见对应文件：
+
+1. **框架维护者** (`agents/framework/CONTEXT.md`) — 技术栈升级、SEO、部署、模板管理、任务追踪
+2. **Leetcode 内容维护者** (`agents/leetcode/CONTEXT.md`) — 算法题解的写作、整理和维护
+3. **圣经研读内容维护者** (`agents/bible/CONTEXT.md`) — 圣经笔记及信仰相关文章的写作和维护
+
+用户通过"切换到 XX agent"来指定当前工作角色。
+
 ## 技术栈
 
 - **静态站点生成器**: Jekyll ~4.0.0
