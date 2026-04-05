@@ -49,42 +49,39 @@ jQuery(document).ready(function($) {
     if ($(window).width() > MQL) {
         var headerHeight = $('.navbar-custom').height(),
             bannerHeight  = $('.intro-header .container').height();     
-        // 添加节流优化
-        var scrollTimer;
+        // 节流优化：滚动过程中每16ms执行一次（真正的throttle）
+        var scrolling = false;
         $(window).on('scroll', {
                 previousTop: 0
             },
             function() {
-                if (scrollTimer) {
-                    clearTimeout(scrollTimer);
-                }
-                scrollTimer = setTimeout(() => {
+                if (scrolling) return; // 忽略本次，等上一个定时器跑完
+                scrolling = true;
+                var self = this;
+                setTimeout(function() {
                     var currentTop = $(window).scrollTop(),
                         $catalog = $('.side-catalog');
 
-                    //check if user is scrolling up by mouse or keyborad
-                    if (currentTop < this.previousTop) {
-                    //if scrolling up...
-                    if (currentTop > 0 && $('.navbar-custom').hasClass('is-fixed')) {
-                        $('.navbar-custom').addClass('is-visible');
+                    if (currentTop < self.previousTop) {
+                        if (currentTop > 0 && $('.navbar-custom').hasClass('is-fixed')) {
+                            $('.navbar-custom').addClass('is-visible');
+                        } else {
+                            $('.navbar-custom').removeClass('is-visible is-fixed');
+                        }
                     } else {
-                        $('.navbar-custom').removeClass('is-visible is-fixed');
-                    }
-                    } else {
-                        //if scrolling down...
                         $('.navbar-custom').removeClass('is-visible');
                         if (currentTop > headerHeight && !$('.navbar-custom').hasClass('is-fixed')) $('.navbar-custom').addClass('is-fixed');
                     }
 
-                    //adjust the appearance of side-catalog
                     $catalog.show()
                     if (currentTop > (bannerHeight + 41)) {
                         $catalog.addClass('fixed')
                     } else {
                         $catalog.removeClass('fixed')
                     }
-                    this.previousTop = currentTop;
-                }, 16); // 60fps节流
+                    self.previousTop = currentTop;
+                    scrolling = false; // 执行完毕，允许下一次
+                }, 16);
             });
     }
 });
