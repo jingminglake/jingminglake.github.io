@@ -97,8 +97,8 @@ tags:
   - 系列文章上一篇/下一篇导航、相关文章互相引用、索引页、修复17个缺日期文件名
 - [x] Disqus → Giscus 迁移（基于 GitHub Discussions，无广告，加载快）
   - 文件: `_layouts/post.html`, `_layouts/keynote.html`, `about.html`, `_config.yml`
-- [ ] Font Awesome 4.6.3 → 6.x 升级
-  - 文件: `_includes/head.html` CDN 链接 + 模板中图标类名
+- [x] Font Awesome 4.6.3 → 6.5.1 升级
+  - 文件: `_includes/head.html` CDN 链接 + `_includes/footer.html` 图标类名
 
 ### P2 - 计划执行
 
