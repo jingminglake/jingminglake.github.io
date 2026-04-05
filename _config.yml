@@ -48,7 +48,7 @@ plugins:
   - jekyll-feed
 permalink: pretty
 paginate: 10
-exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md","CLAUDE.md","agents","tasks","_templates"]
 anchorjs: true
 
 
