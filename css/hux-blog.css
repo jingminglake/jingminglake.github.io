@@ -183,7 +183,7 @@ blockquote {
 }
 .post-container pre {
   font-family: inherit;
-  font-size: 16px;
+  font-size: 16px !important;
   white-space: pre-wrap;
   word-wrap: break-word;
   background-color: #f5f5f5;
