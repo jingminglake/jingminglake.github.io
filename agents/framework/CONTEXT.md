@@ -92,7 +92,25 @@ robots.txt           # 搜索引擎爬虫规则
 
 - [x] 添加版权保护声明 CC BY-NC-SA 4.0（详见 `tasks/P2-copyright-notice.md`）
 
-### P3 - 技术升级（优先级低，工作量大）
+### P3 - GitHub Actions（CI/CD 增强）
+
+- [ ] 自定义 Jekyll 构建部署
+  - 用 Actions 替代 GitHub Pages 内置构建，支持任意插件，构建失败有明确报错
+  - 文件: `.github/workflows/jekyll.yml`
+- [ ] Broken Link Checker（死链检测）
+  - 自动检测站内/站外死链，154+ 篇文章需要持续维护链接有效性
+- [ ] Lighthouse CI（性能/SEO 审计）
+  - 每次 push 自动跑 Lighthouse，监控性能、SEO、可访问性评分
+- [ ] HTML Proofer（HTML 校验）
+  - 检查生成 HTML 合法性，检测缺失 alt 标签、空链接等
+- [ ] 图片压缩
+  - push 新图片时自动压缩优化，减少 `img/` 目录体积
+- [ ] Markdown Lint
+  - 检查文章 Markdown 格式一致性，确保 front matter 字段完整
+- [ ] 定时重建（Scheduled Build）
+  - 用 cron 定时触发构建，支持定时发布草稿
+
+### P4 - 技术升级（优先级低，工作量大）
 
 - [ ] Bootstrap 3.x → 5.x 升级
   - 影响: 5个布局文件，46+ class 需改名（col-xs-* → col-*、navbar-default 等）
