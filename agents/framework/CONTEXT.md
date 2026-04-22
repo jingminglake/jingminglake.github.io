@@ -94,11 +94,10 @@ robots.txt           # 搜索引擎爬虫规则
 
 ### P3 - GitHub Actions（CI/CD 增强）
 
-- [ ] 自定义 Jekyll 构建部署
-  - 用 Actions 替代 GitHub Pages 内置构建，支持任意插件，构建失败有明确报错
+- [x] 自定义 Jekyll 构建部署（Jekyll 4.0→4.3, Ruby 3.2, Bundler 2.5）
   - 文件: `.github/workflows/jekyll.yml`
-- [ ] Broken Link Checker（死链检测）
-  - 自动检测站内/站外死链，154+ 篇文章需要持续维护链接有效性
+- [x] Broken Link Checker（死链检测，html-proofer 5.x）
+  - 集成在构建 workflow 中，`--checks Links --only-4xx`
 - [ ] Lighthouse CI（性能/SEO 审计）
   - 每次 push 自动跑 Lighthouse，监控性能、SEO、可访问性评分
 - [ ] HTML Proofer（HTML 校验）
@@ -110,7 +109,18 @@ robots.txt           # 搜索引擎爬虫规则
 - [ ] 定时重建（Scheduled Build）
   - 用 cron 定时触发构建，支持定时发布草稿
 
-### P4 - 技术升级（优先级低，工作量大）
+### P4 - Jekyll 插件增强（已脱离 GitHub Pages 白名单限制）
+
+- [ ] jekyll-last-modified-at — 自动显示文章最后修改时间（基于 git），有利于 SEO
+- [ ] jekyll-archives — 自动生成按年/月/分类的归档页面
+- [ ] jekyll-redirect-from — 文章改 URL 后自动 301 重定向，旧链接不会 404
+- [ ] jekyll-toc — 自动为长文章生成目录（圣经研读、Leetcode 文章适用）
+- [ ] jekyll-reading-time — 显示文章预计阅读时间
+- [ ] jekyll-minifier — 自动压缩 HTML/CSS/JS，提升加载速度
+- [ ] jekyll-compose — 命令行快速创建新文章
+- [ ] jemoji — 支持 GitHub 风格 emoji
+
+### P5 - 技术升级（优先级低，工作量大）
 
 - [ ] Bootstrap 3.x → 5.x 升级
   - 影响: 5个布局文件，46+ class 需改名（col-xs-* → col-*、navbar-default 等）
