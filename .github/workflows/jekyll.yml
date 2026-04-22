@@ -73,6 +73,7 @@ jobs:
     needs: deploy
     steps:
       - name: Lighthouse audit
+        id: lhci
         uses: treosh/lighthouse-ci-action@v12
         with:
           urls: |
@@ -80,9 +81,16 @@ jobs:
             https://www.micili.cn/2017/09/24/Leetcode%E6%80%BB%E7%BB%93-%E4%B8%80/
           runs: 1
           uploadArtifacts: true
+          temporaryPublicStorage: true
+
+      - name: Print Lighthouse scores
+        run: |
+          echo "Results: ${{ steps.lhci.outputs.resultsPath }}"
+          echo "Links: ${{ steps.lhci.outputs.links }}"
+          ls -la ${{ steps.lhci.outputs.resultsPath }} || true
 
       - name: Upload Lighthouse reports
         uses: actions/upload-artifact@v4
         with:
           name: lighthouse-reports
-          path: .lighthouseci/
+          path: ${{ steps.lhci.outputs.resultsPath }}
