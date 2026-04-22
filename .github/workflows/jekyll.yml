@@ -77,6 +77,6 @@ jobs:
         with:
           urls: |
             https://www.micili.cn/
-            https://www.micili.cn/2025/04/05/Leetcode-121-Best-Time-to-Buy-and-Sell-Stock/
+            https://www.micili.cn/2017/09/24/Leetcode%E6%80%BB%E7%BB%93-%E4%B8%80/
           runs: 1
           uploadArtifacts: true
