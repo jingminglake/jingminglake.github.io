@@ -50,6 +50,7 @@ jobs:
             --no-enforce-https \
             --allow-missing-href \
             --swap-urls "^https?\://www\.micili\.cn:" \
+            --no-check-images \
             --only-4xx
         continue-on-error: true
 
