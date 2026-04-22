@@ -41,6 +41,18 @@ jobs:
         env:
           JEKYLL_ENV: production
 
+      - name: Check broken links
+        run: |
+          gem install html-proofer -v '~> 5.0'
+          htmlproofer ./_site \
+            --ignore-status-codes "403,429,999" \
+            --ignore-urls "/fonts.googleapis.com/,/fonts.gstatic.com/" \
+            --no-enforce-https \
+            --allow-missing-href \
+            --swap-urls "^https?\://www\.micili\.cn:" \
+            --only-4xx
+        continue-on-error: true
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
