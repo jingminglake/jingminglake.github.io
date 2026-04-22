@@ -76,19 +76,10 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Lighthouse audit
-        id: lhci
         uses: treosh/lighthouse-ci-action@v12
         with:
           urls: |
             https://www.micili.cn/
             https://www.micili.cn/2017/09/24/Leetcode%E6%80%BB%E7%BB%93-%E4%B8%80/
           runs: 1
-          uploadArtifacts: true
           temporaryPublicStorage: true
-
-      - name: Upload Lighthouse reports
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: lighthouse-reports
-          path: ${{ steps.lhci.outputs.resultsPath }}
