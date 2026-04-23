@@ -79,35 +79,28 @@ jQuery(document).ready(function($) {
                     } else {
                         $catalog.removeClass('fixed')
                     }
-                    // Back to Top Button
-                    var $backToTop = $('#back-to-top');
-                    if (currentTop > 300) {
-                        $backToTop.addClass('visible');
-                    } else {
-                        $backToTop.removeClass('visible');
-                    }
-
                     self.previousTop = currentTop;
                     scrolling = false; // 执行完毕，允许下一次
                 }, 16);
             });
     }
-
-    // Back to Top - 移动端也需要（MQL以下）
-    if ($(window).width() <= MQL) {
-        $(window).on('scroll', function() {
-            var $backToTop = $('#back-to-top');
-            if ($(window).scrollTop() > 300) {
-                $backToTop.addClass('visible');
-            } else {
-                $backToTop.removeClass('visible');
-            }
-        });
-    }
-
-    // Back to Top click
-    $('#back-to-top').on('click', function(e) {
-        e.preventDefault();
-        $('html, body').animate({ scrollTop: 0 }, 400);
-    });
 });
+
+// Back to Top Button（独立于 MQL 判断，所有设备通用）
+(function() {
+    var backToTop = document.getElementById('back-to-top');
+    if (!backToTop) return;
+
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 300) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    });
+
+    backToTop.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
