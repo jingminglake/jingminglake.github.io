@@ -711,6 +711,7 @@ footer .copyright {
 }
 footer .copyright a {
   color: #337ab7;
+  text-decoration: underline;
 }
 footer .copyright a:hover,
 footer .copyright a:focus {
