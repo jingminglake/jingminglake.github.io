@@ -28,6 +28,29 @@
 
     {% include footer.html %}
 
+<!-- Dark Mode Toggle Script -->
+<script>
+(function(){
+    var toggle = document.getElementById('dark-mode-toggle');
+    if (!toggle) return;
+    var icon = toggle.querySelector('i');
+
+    function updateIcon() {
+        var isDark = document.documentElement.classList.contains('dark-mode');
+        icon.className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    }
+    updateIcon();
+
+    toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.documentElement.classList.toggle('dark-mode');
+        var isDark = document.documentElement.classList.contains('dark-mode');
+        localStorage.setItem('dark-mode', isDark);
+        updateIcon();
+    });
+})();
+</script>
+
 <!-- Image to hack wechat -->
 <img src="/img/apple-touch-icon.png" width="0" height="0" alt="" />
 <!-- Migrate from head to bottom, no longer block render and still work -->

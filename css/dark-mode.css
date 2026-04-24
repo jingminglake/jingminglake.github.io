@@ -1,0 +1,211 @@
+/* Dark Mode Styles */
+html.dark-mode {
+    color-scheme: dark;
+}
+
+/* Body & Background */
+html.dark-mode body {
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+}
+
+/* Navigation */
+html.dark-mode .navbar-custom.is-fixed {
+    background-color: rgba(26, 26, 46, 0.95);
+    border-bottom-color: #2a2a4a;
+}
+html.dark-mode .navbar-custom.is-fixed .navbar-brand {
+    color: #e0e0e0;
+}
+html.dark-mode .navbar-custom.is-fixed .nav li a {
+    color: #e0e0e0;
+}
+html.dark-mode .navbar-custom.is-fixed .nav li a:hover,
+html.dark-mode .navbar-custom.is-fixed .nav li a:focus {
+    color: #4fc3f7;
+}
+html.dark-mode .navbar-custom.is-fixed .navbar-brand:hover {
+    color: #4fc3f7;
+}
+
+/* Mobile nav dropdown */
+@media only screen and (max-width: 767px) {
+    html.dark-mode .navbar-default .navbar-collapse {
+        background: #1a1a2e;
+        box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.4);
+    }
+    html.dark-mode #huxblog_navbar a {
+        color: #e0e0e0 !important;
+    }
+}
+
+/* Post Content */
+html.dark-mode .post-container {
+    color: #e0e0e0;
+}
+html.dark-mode .post-container a {
+    color: #4fc3f7;
+}
+html.dark-mode .post-container a:hover {
+    color: #81d4fa;
+}
+html.dark-mode .post-container h1,
+html.dark-mode .post-container h2,
+html.dark-mode .post-container h3,
+html.dark-mode .post-container h4 {
+    color: #f0f0f0;
+}
+html.dark-mode .post-container h5,
+html.dark-mode .post-container h6 {
+    color: #b0b0b0;
+}
+
+/* Code blocks */
+html.dark-mode .post-container pre {
+    background-color: #0d1117;
+    border-color: #30363d;
+    color: #e6edf3;
+}
+html.dark-mode code {
+    background-color: #2d333b;
+    color: #e6edf3;
+}
+
+/* Blockquote */
+html.dark-mode blockquote {
+    color: #a0a0a0;
+    border-left-color: #4fc3f7;
+}
+
+/* Tables */
+html.dark-mode .table th,
+html.dark-mode .table td {
+    border-color: #333 !important;
+}
+html.dark-mode .table th {
+    background-color: #2a2a4a;
+    color: #e0e0e0;
+}
+html.dark-mode .table td {
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+}
+html.dark-mode .table-striped > tbody > tr:nth-of-type(odd) > td {
+    background-color: #222244;
+}
+
+/* Post list / Home page */
+html.dark-mode .post-preview > a {
+    color: #e0e0e0;
+}
+html.dark-mode .post-preview > a:hover {
+    color: #4fc3f7;
+}
+html.dark-mode .post-preview > .post-meta {
+    color: #888;
+}
+html.dark-mode .postlist-container {
+    border-bottom-color: #333;
+}
+
+/* Pager */
+html.dark-mode .pager li > a {
+    background-color: #2a2a4a;
+    color: #e0e0e0;
+    border-color: #444;
+}
+html.dark-mode .pager li > a:hover {
+    background-color: #4fc3f7;
+    color: #1a1a2e;
+    border-color: #4fc3f7;
+}
+html.dark-mode .pager li > a > span {
+    color: #999;
+}
+
+/* Footer */
+html.dark-mode footer {
+    background-color: #1a1a2e;
+    color: #888;
+}
+html.dark-mode footer .copyright {
+    color: #888;
+}
+html.dark-mode footer .copyright a {
+    color: #4fc3f7;
+}
+
+/* Sidebar */
+html.dark-mode .sidebar-container {
+    color: #888;
+}
+html.dark-mode .sidebar-container h5 a {
+    color: #888 !important;
+}
+
+/* Tags */
+html.dark-mode #tag_cloud a,
+html.dark-mode #tag_cloud .tag {
+    background: #2a2a4a;
+    color: #e0e0e0;
+}
+html.dark-mode #tag_cloud a:hover {
+    background-color: #4fc3f7 !important;
+    color: #1a1a2e;
+}
+
+/* Tag listing page */
+html.dark-mode .one-tag-list .post-preview > a .post-title {
+    color: #e0e0e0;
+}
+html.dark-mode .listing-seperator {
+    color: #4fc3f7;
+}
+
+/* Side catalog */
+html.dark-mode .side-catalog .catalog-body .active {
+    background-color: #2a2a4a;
+}
+html.dark-mode .side-catalog .catalog-body a {
+    color: #b0b0b0;
+}
+html.dark-mode .side-catalog .catalog-body .active a {
+    color: #4fc3f7 !important;
+}
+
+/* Selection */
+html.dark-mode ::selection {
+    background: #4fc3f7;
+    color: #1a1a2e;
+}
+
+/* HR */
+html.dark-mode hr {
+    border-color: #333;
+}
+
+/* About page */
+html.dark-mode .about-container {
+    color: #e0e0e0;
+}
+
+/* Back to top button in dark mode */
+html.dark-mode #back-to-top {
+    background: rgba(79, 195, 247, 0.7);
+}
+html.dark-mode #back-to-top:hover {
+    background: rgba(79, 195, 247, 1);
+}
+
+/* Syntax highlighting adjustments */
+html.dark-mode .highlight {
+    background-color: #0d1117;
+}
+
+/* Input / Form */
+html.dark-mode input,
+html.dark-mode textarea {
+    background-color: #2a2a4a;
+    color: #e0e0e0;
+    border-color: #444;
+}

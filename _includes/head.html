@@ -51,6 +51,19 @@
     -->
 
 
+    <!-- Dark Mode CSS -->
+    <link rel="stylesheet" href="{{ "/css/dark-mode.css" | prepend: site.baseurl }}">
+
+    <!-- 防止深色模式闪白屏：在渲染前立即应用 -->
+    <script>
+        (function(){
+            var saved = localStorage.getItem('dark-mode');
+            if (saved === 'true' || (saved === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark-mode');
+            }
+        })();
+    </script>
+
     <!-- ga & ba script hoook -->
     <script></script>
 </head>

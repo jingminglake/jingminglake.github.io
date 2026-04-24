@@ -24,6 +24,11 @@
                         <a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
                     </li>
                     {% endif %}{% endfor %}
+                    <li>
+                        <a id="dark-mode-toggle" href="#" aria-label="切换深色模式" style="font-size:16px;">
+                            <i class="fa-solid fa-moon"></i>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
