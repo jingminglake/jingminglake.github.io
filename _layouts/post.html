@@ -41,8 +41,10 @@ layout: default
                     <h2 class="subheading">{{ page.subtitle }}</h2>
                     {% comment %} endif {% endcomment %}
                     <span class="meta">Posted by {% if page.author %}{{ page.author }}{% else %}{{ site.title }}{% endif %} on {{ page.date | date: "%B %-d, %Y" }}
-                        {% if page.update_date %}
-                            , Updated on {{ page.update_date | date: "%B %-d, %Y" }}
+                        {% assign mod_date = page.last_modified_at | date: "%Y-%m-%d" %}
+                        {% assign pub_date = page.date | date: "%Y-%m-%d" %}
+                        {% if mod_date != pub_date %}
+                            · Updated on {{ page.last_modified_at | date: "%B %-d, %Y" }}
                         {% endif %}
                         · {% assign words = content | strip_html | strip_newlines | split: '' | size %}{% if words > 10000 %}{{ words | divided_by: 300 }}{% else %}{{ words | divided_by: 350 }}{% endif %} 分钟阅读
                     </span>
