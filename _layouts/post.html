@@ -44,6 +44,7 @@ layout: default
                         {% if page.update_date %}
                             , Updated on {{ page.update_date | date: "%B %-d, %Y" }}
                         {% endif %}
+                        · {% assign words = content | strip_html | strip_newlines | split: '' | size %}{% if words > 10000 %}{{ words | divided_by: 300 }}{% else %}{{ words | divided_by: 350 }}{% endif %} 分钟阅读
                     </span>
                 </div>
             </div>

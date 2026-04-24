@@ -98,8 +98,8 @@ robots.txt           # 搜索引擎爬虫规则
   - 文件: `.github/workflows/jekyll.yml`
 - [x] Broken Link Checker（死链检测，html-proofer 5.x）
   - 集成在构建 workflow 中，`--checks Links --only-4xx`
-- [ ] Lighthouse CI（性能/SEO 审计）
-  - 每次 push 自动跑 Lighthouse，监控性能、SEO、可访问性评分
+- [x] Lighthouse CI（性能/SEO 审计，treosh/lighthouse-ci-action）
+  - 部署后自动审计首页和文章页，报告上传到 Google 临时存储
 - [ ] HTML Proofer（HTML 校验）
   - 检查生成 HTML 合法性，检测缺失 alt 标签、空链接等
 - [ ] 图片压缩
@@ -130,7 +130,7 @@ robots.txt           # 搜索引擎爬虫规则
 
 - [ ] 深色模式 — 跟随系统或手动切换
 - [ ] 文章目录（TOC）— 长文章侧边自动生成目录，滚动高亮当前章节
-- [ ] 返回顶部按钮
+- [x] 返回顶部按钮（内联方案，所有设备通用）
 - [ ] 预计阅读时间 — 文章开头显示阅读时长
 - [ ] 全站搜索 — 用 lunr.js 纯前端实现，无需服务器
 - [ ] 文章分享按钮 — 微信/微博/Twitter
