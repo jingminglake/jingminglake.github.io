@@ -10,9 +10,21 @@
     {{ content }}
 
 <!-- Back to Top Button -->
-<a id="back-to-top" href="#" aria-label="返回顶部">
+<a id="back-to-top" href="#" aria-label="返回顶部" style="display:none;position:fixed;bottom:30px;right:30px;width:44px;height:44px;background:rgba(0,133,161,0.7);color:#fff;border-radius:50%;text-align:center;line-height:44px;font-size:18px;text-decoration:none;z-index:9999;">
     <i class="fa-solid fa-chevron-up"></i>
 </a>
+<script>
+(function(){
+    var btn=document.getElementById('back-to-top');
+    window.addEventListener('scroll',function(){
+        btn.style.display=window.scrollY>300?'block':'none';
+    });
+    btn.addEventListener('click',function(e){
+        e.preventDefault();
+        window.scrollTo({top:0,behavior:'smooth'});
+    });
+})();
+</script>
 
     {% include footer.html %}
 
