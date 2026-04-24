@@ -85,22 +85,3 @@ jQuery(document).ready(function($) {
             });
     }
 });
-
-// Back to Top Button（独立于 MQL 判断，所有设备通用）
-(function() {
-    var backToTop = document.getElementById('back-to-top');
-    if (!backToTop) return;
-
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 300) {
-            backToTop.classList.add('visible');
-        } else {
-            backToTop.classList.remove('visible');
-        }
-    });
-
-    backToTop.addEventListener('click', function(e) {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-})();
