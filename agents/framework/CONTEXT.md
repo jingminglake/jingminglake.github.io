@@ -126,7 +126,8 @@ robots.txt           # 搜索引擎爬虫规则
 
 ### P4 - Jekyll 插件增强（已脱离 GitHub Pages 白名单限制）
 
-- [ ] jekyll-last-modified-at — 自动显示文章最后修改时间（基于 git），有利于 SEO
+- [x] jekyll-last-modified-at — 自动显示文章最后修改时间（基于 git），有利于 SEO
+  - 已落地：Gemfile + _config.yml plugins + _layouts/post.html 显示
 - [ ] jekyll-archives — 自动生成按年/月/分类的归档页面
 - [ ] jekyll-redirect-from — 文章改 URL 后自动 301 重定向，旧链接不会 404
 - [ ] jekyll-toc — 自动为长文章生成目录（圣经研读、Leetcode 文章适用）
