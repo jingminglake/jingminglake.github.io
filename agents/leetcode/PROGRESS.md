@@ -21,6 +21,8 @@
 - **2026-09-17 插入（二）**：《总结（十三）》新增「状态定义的方向：以 i 结尾 vs 以 i 起头」一节，并新增 1235 Maximum Profit in Job Scheduling（该篇原无此题）。
 - **2026-09-17 插入（三）**：《总结（八）》285 下补 BST 四个 bound 的统一模板；《总结（三）》那句「需要掌握 BST 上的 lower/upper_bound」原是空头支票，已补内容并互相引用。
 - **2026-09-17 插入（四）**：《总结（十一）》84 补收尾与等号安全性，并把原 PS 扩成单调栈小结（串起 84/85/239/42）；《总结（二）》42 处补单调栈视角的交叉引用。
+- **进行中（2026-10-07 起）**：**图论专题**。笔记里带权图完全空白（图论篇原只有 40 行 0 题），10-07 学完 743 Dijkstra → 787 Bellman-Ford K+1 轮 → 1584 Kruskal/Prim → 778 minimax Dijkstra（778 只讲解、用户未写）。图论篇已重写为「图算法地图」。**下次开工：先写 778（方法一，时间够再写方法三），然后补基础图 695／130／994／323**。
+- **暂停（2026-10-06）**：「对应／匹配／模式」专题。用户自述这类题很弱。顺序：**290 → 205 → 890**（用户在 LeetCode 自己写，290 先写方法一两张表）。三题做完后我再挑一批同类题加练（候选见学习路线「对应／匹配篇」）。核心方法：把题意写成「当且仅当」，每个箭头一条检查；暴力两两比 → 记上次出现位置 → 两张表；或签名（第几个新元素）。
 - **2026-10-06 插入**：从 314「TreeMap 不如 HashMap + 扫 min..max」引出两轮全笔记审查：①**先问值域再选结构**（269／49／451／327／315 改正）②**签名 = 消掉不关心的差异**（694 签名 bug、36 缺九宫格公式、721 key 歧义、290 补签名写法、49 补「怎么想到」）。同时补完 498／314／662 的坐标化内容。
 - **2026-09-19**：开始系统性刷题能力管理（见 `AUDIT.md`）。新建《总结（二十三）》区间与扫描线；253 因非贪心整条移出贪心篇；621 确认为「贪心模拟 + 数学构造」两条路，留在贪心篇。
 
@@ -35,7 +37,7 @@
 3. **不通过** → 轮次归 0，该项插到**第 4 位**（下次开工必再测）。
 4. 队列只有顺序，没有 deadline。**做完 3 项就算当次达标**，不欠债。
 
-**当前队列**（队首在上；45 项，每次 3 项，约 14 次走完一轮）
+**当前队列**（队首在上；51 项，每次 3 项，约 14 次走完一轮）
 
 | # | 复习内容 | 测法 | 轮次 |
 |---|---------|------|------|
@@ -85,6 +87,12 @@
 | 43 | 694 为何「BFS 路径 + 每层 #」会撞车 | 默画反例两岛 + 说出相对坐标签名 | 0 |
 | 44 | 先问值域再选结构（314／451／269／1094 vs 729） | 口述两问 + 说出 327 multiset+distance 为何 O(n²) | 0 |
 | 45 | 451 Java（方法三：计数 + 排序不同字符） | LeetCode 白板写，一次 AC | 0 |
+| 46 | 「当且仅当」两个箭头 → 两张表（290）；签名号码跟「哪个元素」走 | 口述 abba 两种违规 + abba/abab 反例 | 0 |
+| 47 | Dijkstra 堆版骨架 + 为何 `d > dist[u]` 不是 `>=` | 白板写 743 + 口述过期记录 | 0 |
+| 48 | Dijkstra 为何不能有负边；代价沿路不减即可（778 的 max）| 口述证明 + 负边反例 | 0 |
+| 49 | 787：为何 K+1 轮、为何必须 prev | 一句话 + 0→1→2、K=0 的例子；说出纯 BF 为何可原地 | 0 |
+| 50 | Kruskal（n-1 次合并）+ Prim 数组版；Prim vs Dijkstra 差哪个式子 | 白板写 1584 两种 | 0 |
+| 51 | 数组版 vs 堆版 Dijkstra／Prim 的选择 | 口述稠密／稀疏判据 + 1584 为何数组版最优 | 0 |
 
 ## 刷题日志
 
@@ -96,6 +104,12 @@
 | 2026-09-0x | 67 Add Binary | 有 bug | 进位从未被置 true；第三个 while 读错字符串 | 未（已在对话中讲解） |
 | 2026-09-0x | 543 Diameter | 有 bug | 算的是节点数，答案要边数（差 1） | 未（已在对话中讲解） |
 | 2026-09-21 | 84 Largest Rectangle | 卡住 | **弹栈那一刻怎么算面积**——左墙要取「弹出后的新栈顶」，不是被弹元素自己 | 已（博文补蓝图区块） |
+| 2026-10-07 | 778 Swim in Rising Water | 讲解，**用户未写** | 三种解法：Dijkstra 把 `+` 换成 `max`（代价沿路不减即可）／二分答案 + BFS／按高度加点 + 并查集（= Kruskal）| 已（图论篇）|
+| 2026-10-07 | 1584 Min Cost to Connect All Points | ✅ Kruskal + Prim 都写了 | 误以为 n 是边数（实为点数，边是用坐标算出来的 n(n-1)/2 条）；`++used == n-1` 看不懂 → 解释「n 个块合并 n-1 次」，建议拆两行。Prim vs Dijkstra 只差更新式里有没有 `dist[u] +` | 已（图论篇）|
+| 2026-10-07 | 787 Cheapest Flights K Stops | ✅ | 问：为何 K+1 轮（经停的是点、坐的是边）；面试怎么解释 prev（一句话 + 0→1→2、K=0 的例子）。追问纯 Bellman-Ford 题 → LeetCode 几乎没有，用 743 练 N-1 轮 + 负环检测；**有步数限制才必须 prev/cur** | 已（图论篇）|
+| 2026-10-07 | 743 Network Delay Time（图论专题第 1 题）| ✅ 自己写 Java | 问清两点：N² 版 vs 堆版按稠密／稀疏选（1584 是稠密反例）；`d > dist[u]` 不能写 `>=`——**用户自己的表述：dist 是前驱更新时连同这条记录一起写的，出堆时相等就是最新记录，要处理**。偏好 dist 版而非 done 版；邻接表用 `List<List<int[]>>`（觉得 `List<int[]>[]` 别扭）| 已（图论篇）|
+| 2026-10-06 | 290 → 205 → 890（对应／匹配专题）| ✅ 三题完成 | 290 两张表写对，else 分支有一条**永远不触发的检查**（两表同时写入 → 互为反向表的不变量），优化为 `String[26]` + `Set.add`；205 用户选**签名法**（「看得懂的方法」）；890 签名一次算 pattern。概念混淆：把签名误解为「第几次遇到」（反例 abba/abab 都是 0,0,1,1）| 已（290 节补两个箭头推导、205、890、Integer 缓存坑）|
+| 2026-10-06 | 694 Distinct Islands（Java）| 有 bug | 递归传了当前格 `i, j` 而非 `nextI, nextJ`；跳过条件漏判 visited → 栈溢出。改为「入口检查 + 淹掉」骨架 | — |
 | 2026-10-06 | 签名问题审查（49／694／36／721／290 等）| 审查 | 用户复习 49 想不到「找公共签名」，自感是连通分量。**诊断**：249／533／554／523 其实都构建对了签名，但每次就题论题，没当成通用招。694 的签名有真 bug（反例两岛撞车）；36 缺 box 公式；721 key 应为根 email | 已（博文五处 + 卡片）|
 | 2026-10-06 | 49 Group Anagrams | 复习 | 想不到用 key → 补「key 是签名，不是挑一个单词当代表」；感觉「连通分量」是对的，差一步问「能否每个元素自己算出所属分量」 | 已 |
 | 2026-10-06 | 451 Sort Characters By Frequency | 自己写 Java（桶）| 两处 bug：`int cnt = new int[128]` 少 `[]`；内层 `for (k...; k < i; i++)` 自增写成外层变量 → 死循环。另问了 128／256 的讲究 | 已（博文订正复杂度 + 补方法三；代码在本文件卡片）|
@@ -1234,6 +1248,7 @@ quickselect：T(n) =  T(n/2) + O(n) → O(n)         只去 k 那边，n + n/2 +
 | ⑤ | **比较器** | `a < b` | 别写 `a - b`（溢出），用 `Integer.compare(a, b)` |
 | ⑥ | **字符当下标** | `char` 通常有符号，扩展 ASCII 为负，要 `(unsigned char)c` | `char` 是 16 位无符号，`cnt[c]` 直接用；但 `byte` 有符号，要 `b & 0xFF` |
 | ⑦ | **数组不能当 key** | `vector` 按内容比较，可作 map key | `int[]`／`char[]` 按地址比较：`new String(arr)`（不是 `arr.toString()`）、`Arrays.toString(cnt)` |
+| ⑧ | **Integer 缓存** | — | 两个 `Integer` 用 `==`／`!=` 比的是地址，只有 -128..127 被缓存；比值用 `equals`／`Objects.equals`，或先拆箱 |
 
 **① 的各种表现**（全是同一个概念）：
 - `list.toArray(new int[n])` **编译不过** → `list.stream().mapToInt(Integer::intValue).toArray()`，或一开始就开 `int[]`
@@ -1345,6 +1360,101 @@ for (int f = s.length(); f >= 1; f--)                    // 高频到低频，�
 
 **128／256**：ASCII 0–127 → `int[128]`；只有小写 → `int[26]` + `c-'a'`；扩展 ASCII／说不清 → `int[256]`；Unicode → HashMap。数组开多大看**题目约束**。
 
+
+### 卡片：图论 Java 骨架（2026-10-07，743／787／1584／778）
+
+```java
+// 743 Dijkstra 堆版（dist 版懒删除）
+List<List<int[]>> g = new ArrayList<>();
+for (int i = 0; i <= n; i++) g.add(new ArrayList<>());
+for (int[] t : times) g.get(t[0]).add(new int[]{t[1], t[2]});
+int[] dist = new int[n + 1];
+Arrays.fill(dist, Integer.MAX_VALUE);
+dist[k] = 0;
+PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> Integer.compare(a[0], b[0]));
+pq.offer(new int[]{0, k});
+while (!pq.isEmpty()) {
+    int[] top = pq.poll();
+    int d = top[0], u = top[1];
+    if (d > dist[u]) continue;                  // 过期记录
+    for (int[] e : g.get(u)) {
+        int v = e[0], w = e[1];
+        if (d + w < dist[v]) { dist[v] = d + w; pq.offer(new int[]{dist[v], v}); }
+    }
+}
+```
+
+```java
+// 787 Bellman-Ford K+1 轮（必须 prev/cur）
+int[] prev = new int[n];
+Arrays.fill(prev, Integer.MAX_VALUE);
+prev[src] = 0;
+for (int i = 1; i <= k + 1; i++) {
+    int[] cur = prev.clone();
+    for (int[] f : flights) {
+        if (prev[f[0]] == Integer.MAX_VALUE) continue;
+        cur[f[1]] = Math.min(cur[f[1]], prev[f[0]] + f[2]);   // 只从 prev 读
+    }
+    prev = cur;
+}
+return prev[dst] == Integer.MAX_VALUE ? -1 : prev[dst];
+```
+
+```java
+// 1584 Prim 数组版（稠密图最优）
+int[] minCost = new int[n];
+Arrays.fill(minCost, Integer.MAX_VALUE);
+minCost[0] = 0;
+boolean[] inTree = new boolean[n];
+int total = 0;
+for (int round = 0; round < n; round++) {
+    int u = -1;
+    for (int v = 0; v < n; v++) if (!inTree[v] && (u == -1 || minCost[v] < minCost[u])) u = v;
+    inTree[u] = true;
+    total += minCost[u];
+    for (int v = 0; v < n; v++) if (!inTree[v]) minCost[v] = Math.min(minCost[v], dist(u, v));
+}
+// Kruskal：边 {w,i,j} 排序 → find(i) != find(j) 才选 → used++; if (used == n - 1) break;
+```
+
+```java
+// 778 只改 743 的一行：int nd = Math.max(d, grid[nr][nc]);  终点出堆即返回
+```
+
+**用户的表述（743）**：dist 是前驱更新时连同这条记录一起写入的，出堆时相等就是最新记录，要处理；大于就是过期。用户偏好 dist 版而非 done 版。
+
+| 题 | 路径代价 | 算法 | 一句话 |
+|---|---|---|---|
+| 743 | 边权和 | Dijkstra | 弹出即确定（边权 ≥ 0）|
+| 787 | 边权和 + ≤K+1 条边 | BF，K+1 轮 | 有步数限制 → prev/cur |
+| 1584 | 连通所有点的总边权 | Kruskal／Prim | 切分性质；Prim = Dijkstra 去掉 `dist[u] +` |
+| 778 | 路上最大值 | Dijkstra | `+` 换 `max`，代价沿路不减即可 |
+
+### 计划：C++ 已写、Java 待补的题（2026-10-06 挑选，未开始）
+
+用户 1–96 题中只有 C++ 的 50 题，挑出值得用 Java 重写的。按骨架分组，一组一天，组前先默写骨架：
+
+1. 链表：21 → 19 → 92 → 25
+2. 回溯：77（`new ArrayList<>(path)`）→ 22（`sb.setLength`）→ 93 → 37
+3. 数组原地：31 → 41 → 48
+4. 字符串：43 → 71（`split` 空串）→ 68
+5. 二分：35 → 69（`long`）→ 4
+6. DP：64 → 10 → 96
+7. 单调栈：84 → 85
+
+第二档（有空再写）：29、59、73、95、80、82、55。其余（9、14、27、38、58、66、70、83、88、24、62、63、86、61、16、18、49、67、12、28、60、89）不必重写。
+
+**Java 骨架默写清单**（每天 10 分钟，连续两天一次写对即打勾）：① 网格 DFS（入口检查 + 淹掉）② BFS 层序 ③ computeIfAbsent 分组 + 签名 ④ 二分 `[lo,hi)` ⑤ PriorityQueue 比较器 ⑥ 二维数组排序 ⑦ List↔int[]、StringBuilder ⑧ 并查集 ⑨ 可变滑动窗口 ⑩ 单调栈。
+
+
+## 学习路线（对应／匹配篇，2026-10-06 立项）
+
+| 阶段 | 题 | 要点 |
+|---|---|---|
+| ✅ | 290 Word Pattern | 「当且仅当」两个箭头 → 两张表；签名写法 |
+| ✅ | 205 Isomorphic Strings | 同 290，字符对字符；`badc`/`baba` 反例 |
+| ✅ | 890 Find and Replace Pattern | 签名只算一次 pattern |
+| 待定 | 三题做完后再选 | 候选：291（回溯版 290）、1153（只要求单向 + 能否链式改写）、242/383（计数对应），按用户卡点挑 |
 
 ## 学习路线（kSum 篇）
 
