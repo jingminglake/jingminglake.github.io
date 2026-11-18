@@ -887,6 +887,25 @@ O(h)，不需要父指针，不需要递归。**记住那一句就能现推四�
 
 **易错**：连续弹多个时，每弹一次都要**重新读一次栈顶**（i=4 弹 3 再弹 2，左墙从 2 变成 1，宽从 1 变成 2）。
 
+### 卡片：lowerBound 唯一模板 + 区间计数（2026-11-17，副线用）
+
+```java
+// 返回第一个 >= target 的下标；全部 < target 时返回 n
+// 不变量：[0, left) 都 < target，(right, n-1] 都 >= target
+int lowerBound(int[] a, int target) {
+    int left = 0, right = a.length - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (a[mid] >= target) right = mid - 1;
+        else left = mid + 1;
+    }
+    return left;
+}
+// [lo, hi] 里有几个 = lowerBound(hi + 1) - lowerBound(lo)   （hi 可能是 MAX_VALUE → 用 long）
+```
+- 「有没有数落在 [lo, hi]」= 第一个 ≥ lo 存在且 ≤ hi；动态增删时用 `TreeSet.ceiling(lo)`（树上二分）。
+- 和 2563／923 的 `count(≤hi) - count(≤lo-1)` 是同一个式子。不用 `Arrays.binarySearch`（重复元素不保证第一个）。
+
 ### 卡片：Java 面试语法速查（2026-11-10，用户「java 语法把我恶心到了」）
 
 | 场景 | 写法 | 踩过的坑 |
