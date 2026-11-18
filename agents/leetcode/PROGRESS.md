@@ -887,24 +887,25 @@ O(h)，不需要父指针，不需要递归。**记住那一句就能现推四�
 
 **易错**：连续弹多个时，每弹一次都要**重新读一次栈顶**（i=4 弹 3 再弹 2，左墙从 2 变成 1，宽从 1 变成 2）。
 
-### 卡片：lowerBound 唯一模板 + 区间计数（2026-11-17，副线用）
+### 卡片：lowerBound 唯一模板（半开）+ 区间计数 + TreeSet（2026-11-17，副线用）
 
 ```java
 // 返回第一个 >= target 的下标；全部 < target 时返回 n
-// 不变量：[0, left) 都 < target，(right, n-1] 都 >= target
+// 搜索区间 [left, right)，答案一直在区间里
 int lowerBound(int[] a, int target) {
-    int left = 0, right = a.length - 1;
-    while (left <= right) {
+    int left = 0, right = a.length;        // 答案可能是 n
+    while (left < right) {
         int mid = left + (right - left) / 2;
-        if (a[mid] >= target) right = mid - 1;
+        if (a[mid] >= target) right = mid; // mid 可能是答案，保留
         else left = mid + 1;
     }
     return left;
 }
 // [lo, hi] 里有几个 = lowerBound(hi + 1) - lowerBound(lo)   （hi 可能是 MAX_VALUE → 用 long）
 ```
-- 「有没有数落在 [lo, hi]」= 第一个 ≥ lo 存在且 ≤ hi；动态增删时用 `TreeSet.ceiling(lo)`（树上二分）。
-- 和 2563／923 的 `count(≤hi) - count(≤lo-1)` 是同一个式子。不用 `Arrays.binarySearch`（重复元素不保证第一个）。
+- **约定（用户 11-17 选 `left < right`）：lowerBound 只用半开版；704／875 等其他二分继续闭区间 `<=`。**和闭区间只差三处：`right = n`、`<`、`right = mid`。
+- 「有没有数落在 [lo, hi]」= 第一个 ≥ lo 存在且 ≤ hi；和 2563／923 的 `count(≤hi) - count(≤lo-1)` 同一个式子。不用 `Arrays.binarySearch`（重复元素不保证第一个）。
+- **TreeSet**（动态增删 + 树上二分）：`ceiling` ≥、`floor` ≤、`higher` >、`lower` <，找不到返回 `null` → 用包装类接。坑：会去重（要重复用 `TreeMap<值,次数>` + `ceilingKey`）；`subSet().size()` 是 O(k) 不能拿来计数；`Long` 集合 `remove` 要传 `(long)`，传 `Integer` 静默删不掉。
 
 ### 卡片：Java 面试语法速查（2026-11-10，用户「java 语法把我恶心到了」）
 
